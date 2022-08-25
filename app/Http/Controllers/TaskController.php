@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use App\Models\User;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -16,7 +14,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('task.index');
+        $tasks = Task::all();
+
+        return view('task.index', [
+            'tasks' => $tasks
+        ]);
     }
 
     /**
@@ -35,13 +37,11 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoreTaskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTaskRequest $request, User $user)
+    public function store(Request $request)
     {
-        $description = $request->post('task');
-        $task = new Task;
-        $task->description = $description;
-        $task->user_id = $user->id;
-        $task->save();
+        Task::create($request->only('description'));
+
+        return to_route('task.index');
     }
 
     /**
@@ -77,9 +77,13 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
-        //
+        Task::find($task->id)->update($request->only('description'));
+
+        return redirect()->to(route('task.show', [
+            'task' => $task,
+        ]));
     }
 
     /**
@@ -90,6 +94,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task = Task::find($task->id);
+        $task->delete();
+
+        return redirect()->to(route('task.index'));
     }
 }

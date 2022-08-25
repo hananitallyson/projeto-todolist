@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'login']);
-Route::post('/dashboard', [LoginController::class, 'authenticate'])->name('login');
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::resource('task', TaskController::class);

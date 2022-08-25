@@ -12,13 +12,14 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-primary sticky-top">
             <div class="container d-flex justify-content-between">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                    <i class="bi bi-journal-check text-white"></i>
                     <span class="fw-bolder text-white">Todolist</span>
                 </a>
                 <div>
                     <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link fw-bold text-white" href="{{ url('/dashboard') }}"><i class="bi bi-house pe-1"></i>Home</a>
+                            <a class="nav-link fw-bold text-white" href="{{ url('/') }}"><i class="bi bi-house pe-1"></i>Home</a>
                             <a class="nav-link fw-bold text-white" href="{{ url('/task') }}"><i class="bi bi-list-task pe-1"></i>Tasks</a>
                             <a class="nav-link fw-bold text-white pe-0" href="#"><i class="bi bi-person pe-1"></i></i>Profile</a>
                         </div>
@@ -28,7 +29,7 @@
         </nav>
     </header>
     <div class="container mt-5">
-        <h1 class="pb-2 mb-5 text-primary border-bottom border-primary">@yield('title')</h1>
+        <h1 class="pb-2 mb-4 text-primary border-bottom border-primary">@yield('title')</h1>
         @yield('content')
     </div>
     <footer class="text-muted fixed-bottom">
@@ -37,8 +38,9 @@
                 <span>
                     ©{{ now()->year }} Copyright - Hanani Tallyson
                 </span>
-                <nav>
+                <nav class="d-flex gap-3">
                     <a href="https://github.com/hananitallyson"><i class="bi bi-github text-muted fs-3"></i></a>
+                    <a href="https://www.linkedin.com/in/hanani-tallyson-a89008248"><i class="bi bi-linkedin text-muted fs-3"></i></i></a>
                 </nav>
             </div>
         </div>
