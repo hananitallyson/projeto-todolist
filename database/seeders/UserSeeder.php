@@ -15,6 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Task::factory()->count(5)->create();
     }
 }

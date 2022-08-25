@@ -18,6 +18,7 @@ class TaskFactory extends Factory
     {
         return [
             'description' => fake()->sentence(3, true),
+            'user_id'
         ];
     }
 }

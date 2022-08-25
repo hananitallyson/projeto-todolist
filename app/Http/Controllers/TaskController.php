@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -97,6 +103,6 @@ class TaskController extends Controller
         $task = Task::find($task->id);
         $task->delete();
 
-        return redirect()->to(route('task.index'));
+        return to_route('task.index');
     }
 }

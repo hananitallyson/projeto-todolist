@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', "Task $task->id")
+@section('title', "Task")
 
 @section('content')
     <div class="card">
