@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Dashboard')
+@section('title', 'Home')
 
 @section('content')
     <div class="card text-bg-primary mb-3">

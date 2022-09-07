@@ -3,16 +3,17 @@
 @section('title', 'Login')
 
 @section('content')
-    <form class="d-flex flex-column" style="min-width: 280px;">
+    <form action="login" class="d-flex flex-column" style="min-width: 280px;" method="post">
+        @csrf
         <div class="form-outline mb-4">
-            <input type="email" id="form2Example1" class="form-control" placeholder="Email">
+            <input type="email" name="email" class="form-control" placeholder="Email" autofocus required>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="password" id="form2Example2" class="form-control" placeholder="Password">
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
         </div>
 
-        <button type="button" class="btn btn-primary btn-block mb-4">Log in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>
 
         <div class="text-center">
             <p>Not a member? <a href="{{ route('register') }}">Register</a></p>

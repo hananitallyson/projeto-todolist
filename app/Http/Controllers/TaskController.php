@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware(['auth']);
-    // }
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -20,7 +21,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::all()->where('user_id', auth()->id());
 
         return view('task.index', [
             'tasks' => $tasks
@@ -45,9 +46,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        Task::create($request->only('description'));
+        Task::create([
+            'description' => request('description'),
+            'user_id' => auth()->user()->id
+        ]);
 
-        return to_route('task.index');
+        return to_route('tasks.index');
     }
 
     /**
@@ -60,6 +64,7 @@ class TaskController extends Controller
     {
         return view('task.show', [
             'task' => $task,
+            'user' => auth()->user()
         ]);
     }
 
@@ -87,7 +92,7 @@ class TaskController extends Controller
     {
         Task::find($task->id)->update($request->only('description'));
 
-        return redirect()->to(route('task.show', [
+        return redirect()->to(route('tasks.show', [
             'task' => $task,
         ]));
     }
@@ -103,6 +108,6 @@ class TaskController extends Controller
         $task = Task::find($task->id);
         $task->delete();
 
-        return to_route('task.index');
+        return to_route('tasks.index');
     }
 }

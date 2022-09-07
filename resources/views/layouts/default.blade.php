@@ -19,9 +19,9 @@
                 <div>
                     <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link fw-bold text-white" href="{{ url('/') }}"><i class="bi bi-house pe-1"></i>Home</a>
-                            <a class="nav-link fw-bold text-white" href="{{ url('/task') }}"><i class="bi bi-list-task pe-1"></i>Tasks</a>
-                            <a class="nav-link fw-bold text-white pe-0" href="#"><i class="bi bi-person pe-1"></i></i>Profile</a>
+                            <a class="nav-link fw-bold text-white" href="{{ route('home') }}"><i class="bi bi-house pe-1"></i>Home</a>
+                            <a class="nav-link fw-bold text-white" href="{{ route('tasks.index') }}"><i class="bi bi-list-task pe-1"></i>Tasks</a>
+                            <a class="nav-link fw-bold text-white pe-0" href="/users/{{ auth()->id() }}"><i class="bi bi-person pe-1"></i></i>Profile</a>
                         </div>
                     </div>
                 </div>
