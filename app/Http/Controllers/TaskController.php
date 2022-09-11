@@ -19,13 +19,14 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $tasks = Task::all()->where('user_id', auth()->id());
+        $message = $request->session()->get('message');
 
         return view('task.index', [
             'tasks' => $tasks
-        ]);
+        ])->with('message', $message);
     }
 
     /**
@@ -44,14 +45,15 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoreTaskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Task $task)
     {
         Task::create([
             'description' => request('description'),
             'user_id' => auth()->user()->id
         ]);
 
-        return to_route('tasks.index');
+        return to_route('tasks.index')
+            ->with('message', "Task added successfully!");
     }
 
     /**
@@ -60,12 +62,14 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Task $task, Request $request)
     {
+        $message = $request->session()->get('message');
+
         return view('task.show', [
             'task' => $task,
             'user' => auth()->user()
-        ]);
+        ])->with('message', $message);
     }
 
     /**
@@ -94,7 +98,7 @@ class TaskController extends Controller
 
         return redirect()->to(route('tasks.show', [
             'task' => $task,
-        ]));
+        ]))->with('message', "Task edited successfully!");
     }
 
     /**
@@ -108,6 +112,7 @@ class TaskController extends Controller
         $task = Task::find($task->id);
         $task->delete();
 
-        return to_route('tasks.index');
+        return to_route('tasks.index')
+            ->with('message', "Task removed successfully!");;
     }
 }

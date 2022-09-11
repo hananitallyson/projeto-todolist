@@ -39,8 +39,8 @@
                     ©{{ now()->year }} Copyright - Hanani Tallyson
                 </span>
                 <nav class="d-flex gap-3">
-                    <a href="https://github.com/hananitallyson"><i class="bi bi-github text-muted fs-3"></i></a>
-                    <a href="https://www.linkedin.com/in/hanani-tallyson-a89008248"><i class="bi bi-linkedin text-muted fs-3"></i></i></a>
+                    <a href="https://github.com/hananitallyson" target="_blank"><i class="bi bi-github text-muted fs-3"></i></a>
+                    <a href="https://www.linkedin.com/in/hanani-tallyson-a89008248" target="_blank"><i class="bi bi-linkedin text-muted fs-3"></i></i></a>
                 </nav>
             </div>
         </div>

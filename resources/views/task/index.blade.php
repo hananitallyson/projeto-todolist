@@ -3,6 +3,12 @@
 @section('title', 'Task list')
 
 @section('content')
+    @isset($message)
+        <div class="alert alert-success">
+            {{ $message }}
+        </div>
+    @endisset
+
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
