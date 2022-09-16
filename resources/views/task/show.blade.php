@@ -21,14 +21,21 @@
             <div class="d-flex gap-2">
                 <form action="{{ route('tasks.edit', ['task' => $task]) }}" method="GET">
                     @csrf
-                    <button class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
                 </form>
                 <form action="{{ route('tasks.destroy', ['task' => $task]) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                 </form>
-                <button class="btn btn-success"><i class="bi bi-check-circle"></i></button>
+                @if($task->checked)
+                    <i class="btn btn-success pe-none bi bi-check-circle-fill"></i>
+                @else
+                    <form action="{{ route('tasks.check', ['task' => $task->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

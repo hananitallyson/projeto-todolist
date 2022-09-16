@@ -19,7 +19,11 @@
         <div class="card-body">
             <ul class="list-group">
                 @foreach ($tasks as $task)
-                    <li class="list-group-item list-group-item-action"><a href="{{ url("tasks/$task->id") }}">{{ $task->description }}</a>
+                    @if ($task->checked)
+                        <li class="list-group-item list-group-item-action"><a class="text-success" href="{{ url("tasks/$task->id") }}">{{ $task->description }}</a>
+                    @else
+                        <li class="list-group-item list-group-item-action"><a href="{{ url("tasks/$task->id") }}">{{ $task->description }}</a>
+                    @endif
                 @endforeach
             </ul>
         </div>

@@ -113,6 +113,14 @@ class TaskController extends Controller
         $task->delete();
 
         return to_route('tasks.index')
-            ->with('message', "Task removed successfully!");;
+            ->with('message', "Task removed successfully!");
+    }
+
+    public function check(Task $task) {
+        Task::where('id', $task->id)->update(['checked' => 1]);
+
+        return redirect()->to(route('tasks.show', [
+            'task' => $task,
+        ]))->with('message', "Task done successfully!");
     }
 }

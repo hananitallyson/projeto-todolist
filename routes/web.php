@@ -26,6 +26,8 @@ Route::get('/home', function () {
     return view('home');
 })->middleware(['auth'])->name('home');
 
+Route::post('/task/{task}/check', [TaskController::class, 'check'])->name('tasks.check');
+
 Route::resource('tasks', TaskController::class);
 
 Route::resource('users', UserController::class);
