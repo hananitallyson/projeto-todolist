@@ -45,7 +45,7 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoreTaskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Task $task)
+    public function store()
     {
         Task::create([
             'description' => request('description'),

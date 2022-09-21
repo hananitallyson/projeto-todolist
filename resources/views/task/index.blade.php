@@ -20,7 +20,10 @@
             <ul class="list-group">
                 @foreach ($tasks as $task)
                     @if ($task->checked)
-                        <li class="list-group-item list-group-item-action"><a class="text-success" href="{{ url("tasks/$task->id") }}">{{ $task->description }}</a>
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                            <a href="{{ url("tasks/$task->id") }}">{{ $task->description }}</a>
+                            <span class="badge bg-success">Done<i class="bi bi-check-circle-fill ps-1"></i></span>
+                        </li>
                     @else
                         <li class="list-group-item list-group-item-action"><a href="{{ url("tasks/$task->id") }}">{{ $task->description }}</a>
                     @endif
