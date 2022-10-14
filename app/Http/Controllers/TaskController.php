@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -49,7 +51,7 @@ class TaskController extends Controller
     {
         Task::create([
             'description' => request('description'),
-            'user_id' => auth()->user()->id
+            'user_id' => Auth::id()
         ]);
 
         return to_route('tasks.index')
@@ -64,6 +66,8 @@ class TaskController extends Controller
      */
     public function show(Task $task, Request $request)
     {
+        Gate::authorize('task-view', $task);
+
         $message = $request->session()->get('message');
 
         return view('task.show', [
@@ -94,6 +98,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        $task = Task::find($task->id);
+        Gate::authorize('task-update', $task);
+
         Task::find($task->id)->update($request->only('description'));
 
         return redirect()->to(route('tasks.show', [
@@ -109,6 +116,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        Gate::authorize('task-delete', $task);
+
         $task = Task::find($task->id);
         $task->delete();
 
