@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
@@ -31,3 +32,6 @@ Route::post('/task/{task}/check', [TaskController::class, 'check'])->name('tasks
 Route::resource('tasks', TaskController::class);
 
 Route::resource('users', UserController::class);
+
+Route::resource('admin', AdminController::class)
+    ->middleware(['auth', 'role:admin']);

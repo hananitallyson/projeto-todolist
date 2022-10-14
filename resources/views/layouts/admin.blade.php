@@ -19,10 +19,6 @@
                 <div>
                     <div class="navbar-nav">
                         <a class="nav-link fw-bold text-white" href="{{ route('home') }}"><i class="bi bi-house pe-1"></i>Home</a>
-                        <a class="nav-link fw-bold text-white" href="{{ route('tasks.index') }}"><i class="bi bi-list-task pe-1"></i>Tasks</a>
-                        @role('admin')
-                            <a class="nav-link fw-bold text-white" href="{{ route('admin.index') }}"><i class="bi bi-shield-lock pe-1"></i>Admin</a>
-                        @endrole
                         <a class="nav-link fw-bold text-white pe-0" href="/users/{{ auth()->id() }}"><i class="bi bi-person pe-1"></i></i>Profile</a>
                     </div>
                 </div>

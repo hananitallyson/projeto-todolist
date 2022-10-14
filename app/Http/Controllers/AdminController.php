@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $user = Auth()->user();
-
-        if ($user->hasRole('admin')) {
-            return view('user.index')->with('users', $users);
-        } else {
-            return redirect('home');
-        }
+        return view('admin.index');
     }
 
     /**
@@ -53,10 +43,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('user.show')
-            ->with('user', $user);
+        //
     }
 
     /**
