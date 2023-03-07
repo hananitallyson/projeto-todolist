@@ -28,10 +28,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
         Gate::define('user-view', [UserPolicy::class, 'view']);
-
         Gate::define('task-view', [TaskPolicy::class, 'view']);
         Gate::define('task-update', [TaskPolicy::class, 'update']);
         Gate::define('task-delete', [TaskPolicy::class, 'delete']);
