@@ -125,7 +125,8 @@ class TaskController extends Controller
             ->with('message', "Task removed successfully!");
     }
 
-    public function check(Task $task) {
+    public function check(Task $task)
+    {
         Task::where('id', $task->id)->update(['checked' => 1]);
 
         return redirect()->to(route('tasks.show', [
